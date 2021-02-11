@@ -107,7 +107,7 @@ def get_MSI_Token():
     return access_token
 
 def get_kv(access_token, secret_name):
-    uri = "https://thingworxkv.vault.azure.net/secrets/" + secret_name
+    uri = "https://xxxxxx.vault.azure.net/secrets/" + secret_name
     logging.info(uri)
     headers = {
         "Authorization": 'Bearer ' + access_token
@@ -127,9 +127,7 @@ def get_kv(access_token, secret_name):
         return data_json['value']
 
 def main(myblob: func.InputStream):
-    # archive = "rbifilesarchive"
     archive = os.getenv('ARCHIVE_CONTAINER')
-    # source_container = "rbitesting"
     source_container = os.getenv('SOURCE_CONTAINER')
     token = get_MSI_Token()
     account_name = os.getenv('STORAGE_ACCOUNT_NAME')
@@ -153,7 +151,6 @@ def main(myblob: func.InputStream):
 
     logging.info(os.listdir(path))
     logging.info("Calling upload_to_aws function")
-    # secret_key = get_kv(token, 'ACCESSKEY')
     secret_key = get_kv(token, 'ACCESSKEYRBI')
     bucket_name = os.getenv('Rbi_bucket_name')
     uploaded = upload_to_aws(secret_key, complete_path, f_name, bucket_name)
