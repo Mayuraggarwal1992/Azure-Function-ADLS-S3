@@ -1,0 +1,11 @@
+# Do not include azure-functions-worker as it may conflict with the Azure Functions platform
+
+azure-functions
+adal==1.2.5
+sendgrid==6.4.7
+tabulate==0.8.7
+azure-storage-blob
+cffi==1.14.3
+requests
+boto3==1.17.1
+azure-storage-file-datalake==12.2.2
